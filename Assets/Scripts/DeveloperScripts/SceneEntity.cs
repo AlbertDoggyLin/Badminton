@@ -9,6 +9,7 @@ public class SceneEntity : GameSceneEntityRes
     public GameObject doubleCourt;
     public GameObject ball;
     public Transform Player;
-    public Rigidbody racket;
+    public SteamVR_Behaviour_Pose racket_pose;
+    public Transform racket_transform;
     public GameObject leftHand;
 }

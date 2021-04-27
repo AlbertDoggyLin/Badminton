@@ -12,7 +12,7 @@ public class leftHand : GameEntityBase
     private void Start()
     {
         ball = GameEntityManager.Instance.GetCurrentSceneRes<SceneEntity>().ball;
-        holdingBall = false;
+        holdingBall = true;
     }
     private void Update()
     {

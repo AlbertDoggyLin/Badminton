@@ -25,7 +25,7 @@ public class ballScript : GameEntityBase
     {
         if (!scored)
         {
-            if(Rigidbody.velocity!=Vector3.zero)transform.rotation = Quaternion.LookRotation(Rigidbody.velocity.normalized);
+            if(Rigidbody.velocity.magnitude>0.1f)transform.rotation = Quaternion.LookRotation(Rigidbody.velocity.normalized);
             if (falling && Rigidbody.velocity.magnitude > 4.6f) Rigidbody.velocity = Rigidbody.velocity.normalized * 4.6f;
             else if (Rigidbody.velocity.magnitude > 4.6f)
             {
@@ -40,7 +40,7 @@ public class ballScript : GameEntityBase
             }
         }
     }
-    private void OnCollisionExit(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.name != "floor" &&
             collision.collider.name != "wall" &&

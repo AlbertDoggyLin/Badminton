@@ -7,7 +7,7 @@ public class mainGameTask : TaskBase
     private GameDataManager.score Score;
     private GameObject ball;
     private ballScript ballScript;
-    private GameDataManager.team winner;
+    public GameDataManager.team winner;
     private leftHand leftHand;
     public override IEnumerator TaskInit()
     {
@@ -33,7 +33,9 @@ public class mainGameTask : TaskBase
                 if(Score.red>Score.blue&&Score.red>=21) { winner = GameDataManager.team.red; break; }
                 if(Score.blue>Score.red&&Score.blue>=21) { winner = GameDataManager.team.blue; break; }
             }
+            yield return new WaitForSeconds(2f);
             leftHand.holdingBall = true;
+            yield return new WaitForSeconds(0.2f);
             ballScript.scored = false;
         }
         yield return null;
