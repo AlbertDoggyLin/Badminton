@@ -16,10 +16,22 @@ public class ballCatcherScript : MonoBehaviour
     {
         if (other.attachedRigidbody?.gameObject == GameEntityManager.Instance.GetCurrentSceneRes<SceneEntity>().ball)
         {
-            float targetV = Mathf.Abs(Vector3.Dot(m_racket.velocity, other.attachedRigidbody.velocity))
-                +Vector3.Cross(m_racket.angularVelocity,transform.position- m_racket_transform.position).magnitude;
-            other.attachedRigidbody.velocity = (m_racket.velocity.magnitude+targetV)* 
-                Vector3.Cross(m_racket.angularVelocity, transform.position - m_racket_transform.position).normalized;
+            Rigidbody ball = other.attachedRigidbody;
+            Vector3 Bposition = transform.position - m_racket_transform.position;
+            Vector3 swingDir = Vector3.Cross(m_racket.angularVelocity, Bposition).normalized;
+            float swingSpeed = Bposition.magnitude * m_racket.angularVelocity.magnitude;
+            float reflectionSpeed = Vector3.Dot(ball.velocity, swingDir);
+            Debug.Log(ball.velocity.magnitude);
+            Debug.Log(reflectionSpeed);
+            if (reflectionSpeed > 0)
+            {
+                ball.velocity = ball.velocity + (2 * reflectionSpeed + swingSpeed) * swingDir;
+            }
+            else
+            {
+                float deltaV = swingSpeed - Vector3.Dot(swingDir, ball.velocity);
+                if (deltaV > 0) ball.velocity += deltaV * swingDir;
+            }
         }
     }
 }
