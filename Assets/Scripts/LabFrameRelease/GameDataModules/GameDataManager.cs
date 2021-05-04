@@ -25,6 +25,7 @@ public class GameDataManager : MonoSingleton<GameDataManager>, IGameManager
         public int blue { get; set; }
     }
     public score Score;
+    public team enableToHitBall=team.none;
     public static ILabDataManager LabDataManager { get; set; }
 
     /// <summary>

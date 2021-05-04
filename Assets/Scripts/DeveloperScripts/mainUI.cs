@@ -7,6 +7,7 @@ public class mainUI : MonoBehaviour
     public Button startbut;
     private void Awake()
     {
+        GameSceneManager.Instance.Change2MainScene();
         startbut.onClick.AddListener(() => { GameSceneManager.Instance.Change2MainScene(); });
     }
 }

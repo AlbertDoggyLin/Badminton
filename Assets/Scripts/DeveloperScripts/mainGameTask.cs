@@ -35,6 +35,7 @@ public class mainGameTask : TaskBase
             }
             yield return new WaitForSeconds(2f);
             leftHand.holdingBall = true;
+            GameDataManager.Instance.enableToHitBall = GameDataManager.team.red;
             yield return new WaitForSeconds(0.2f);
             ballScript.scored = false;
         }
