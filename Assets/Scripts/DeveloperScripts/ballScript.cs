@@ -17,6 +17,7 @@ public class ballScript : GameEntityBase
         Rigidbody = GetComponent<Rigidbody>();
         if (Rigidbody == null) Debug.LogError("ball can't find rigidbody");
         falling = false;
+        tempSpeed = -1;
     }
     public override void EntityDispose()
     {
@@ -25,19 +26,30 @@ public class ballScript : GameEntityBase
     {
         if (!scored)
         {
-            if(Rigidbody.velocity.magnitude>0.1f)transform.rotation = Quaternion.LookRotation(Rigidbody.velocity.normalized);
-            if (falling && Rigidbody.velocity.magnitude > 4.6f) Rigidbody.velocity = Rigidbody.velocity.normalized * 4.6f;
+            if (falling && Rigidbody.velocity.magnitude > 4.6f)
+                Rigidbody.velocity = Rigidbody.velocity.normalized * 4.6f;
             else if (Rigidbody.velocity.magnitude > 4.6f)
             {
+                if (tempSpeed == -1 || Rigidbody.velocity.magnitude > tempSpeed)
+                {
+                    tempSpeed = Rigidbody.velocity.magnitude;
+                    Debug.Log(tempSpeed);
+                }
                 timer += Time.deltaTime;
-                Rigidbody.velocity = Rigidbody.velocity.normalized / (0.22f * timer + 1 / tempSpeed);
-                if (Rigidbody.velocity.magnitude < 4.6f) falling = true;
+                Rigidbody.velocity = Rigidbody.velocity.normalized / (0.22f * timer + 1) * tempSpeed;
+                Debug.Log(Rigidbody.velocity.magnitude);
+                if (Rigidbody.velocity.magnitude < 4.6f)
+                {
+                    tempSpeed = -1;
+                    falling = true;
+                }
             }
-            if (transform.position.y <= 1.8 && transform.position.z >= 0.4)
-            {
-                Rigidbody.velocity = Rigidbody.velocity.normalized * -8;
-                if (Rigidbody.velocity.z > -0.3f) Rigidbody.velocity = new Vector3(Rigidbody.velocity.x, Rigidbody.velocity.y, -2);
-            }
+            if (Rigidbody.velocity.magnitude>0.1f)transform.rotation = Quaternion.LookRotation(Rigidbody.velocity.normalized);
+        }
+        else
+        {
+            tempSpeed = -1;
+            falling = false;
         }
     }
     private void OnCollisionEnter(Collision collision)
@@ -49,7 +61,6 @@ public class ballScript : GameEntityBase
             )
         {
             falling = false;
-            tempSpeed = Rigidbody.velocity.magnitude;
             timer = 0f;
         }
         else

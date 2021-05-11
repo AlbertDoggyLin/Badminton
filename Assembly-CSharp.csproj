@@ -47,7 +47,6 @@
   <PropertyGroup>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <UnityProjectGenerator>Unity/VSTU</UnityProjectGenerator>
-    <UnityProjectGeneratorVersion>4.9.1.0</UnityProjectGeneratorVersion>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2019.2.10f1</UnityVersion>
@@ -608,11 +607,11 @@
     <Compile Include="Assets\LabDataVisualization\ViveEye\ViveSR\Scripts\SRanipal_Eye_Framework.cs" />
     <Compile Include="Assets\LabDataVisualization\ViveEye\ViveSR\Scripts\SRanipal_EyeShapeTableDrawer.cs" />
     <Compile Include="Assets\LabDataVisualization\ViveEye\ViveSR\Scripts\SRWorks_Enums.cs" />
-    <Compile Include="Assets\lineDetecter.cs" />
     <Compile Include="Assets\Scripts\DeveloperScripts\ballCatcherScript.cs" />
     <Compile Include="Assets\Scripts\DeveloperScripts\ballScript.cs" />
     <Compile Include="Assets\Scripts\DeveloperScripts\courtEntityBase.cs" />
     <Compile Include="Assets\Scripts\DeveloperScripts\leftHand.cs" />
+    <Compile Include="Assets\Scripts\DeveloperScripts\lineDetecter.cs" />
     <Compile Include="Assets\Scripts\DeveloperScripts\mainGameTask.cs" />
     <Compile Include="Assets\Scripts\DeveloperScripts\mainUI.cs" />
     <Compile Include="Assets\Scripts\DeveloperScripts\movetest.cs" />
@@ -695,31 +694,31 @@
     <None Include="Assets\LabDataVisualization\Vectrosity\Vectrosity\Plugins\VectrosityDemos\ImageEffects\Shaders\_BloomAndFlares\MobileBloom.shader" />
     <None Include="Assets\EquipmentSDK\LeapMotion\Core\Shaders\RuntimeGizmos.shader" />
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>C:/Users/Albert/OneDrive/文件/Unity Project/Badminton/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/資工1B林奕辰/Badminton/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>C:/Users/Albert/OneDrive/文件/Unity Project/Badminton/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/資工1B林奕辰/Badminton/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/Albert/OneDrive/文件/Unity Project/Badminton/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/資工1B林奕辰/Badminton/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:/Users/Albert/OneDrive/文件/Unity Project/Badminton/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/資工1B林奕辰/Badminton/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>C:/Users/Albert/OneDrive/文件/Unity Project/Badminton/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/資工1B林奕辰/Badminton/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/Albert/OneDrive/文件/Unity Project/Badminton/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/資工1B林奕辰/Badminton/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>C:/Users/Albert/OneDrive/文件/Unity Project/Badminton/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/資工1B林奕辰/Badminton/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/Albert/OneDrive/文件/Unity Project/Badminton/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/資工1B林奕辰/Badminton/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>C:/Users/Albert/OneDrive/文件/Unity Project/Badminton/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/資工1B林奕辰/Badminton/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.10f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -899,40 +898,40 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.10f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
     </Reference>
     <Reference Include="LZ4Sharp">
-      <HintPath>C:/Users/Albert/OneDrive/文件/Unity Project/Badminton/Assets/EquipmentSDK/KinectScripts/LZ4Sharp/LZ4Sharp.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/資工1B林奕辰/Badminton/Assets/EquipmentSDK/KinectScripts/LZ4Sharp/LZ4Sharp.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>C:/Users/Albert/OneDrive/文件/Unity Project/Badminton/Assets/EquipmentSDK/KinectScripts/SharpZipLib/ICSharpCode.SharpZipLib.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/資工1B林奕辰/Badminton/Assets/EquipmentSDK/KinectScripts/SharpZipLib/ICSharpCode.SharpZipLib.dll</HintPath>
     </Reference>
     <Reference Include="DeviceLibrary">
-      <HintPath>C:/Users/Albert/OneDrive/文件/Unity Project/Badminton/Assets/LabDataVisualization/Plugins/DeviceLibrary.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/資工1B林奕辰/Badminton/Assets/LabDataVisualization/Plugins/DeviceLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Vectrosity">
-      <HintPath>C:/Users/Albert/OneDrive/文件/Unity Project/Badminton/Assets/LabDataVisualization/Vectrosity/Vectrosity/Plugins/Vectrosity.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/資工1B林奕辰/Badminton/Assets/LabDataVisualization/Vectrosity/Vectrosity/Plugins/Vectrosity.dll</HintPath>
     </Reference>
     <Reference Include="DataSync.Core">
-      <HintPath>C:/Users/Albert/OneDrive/文件/Unity Project/Badminton/Assets/Scripts/LabFrameRelease/LabData/DataSync/Assemblies/DataSync.Core.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/資工1B林奕辰/Badminton/Assets/Scripts/LabFrameRelease/LabData/DataSync/Assemblies/DataSync.Core.dll</HintPath>
     </Reference>
     <Reference Include="DataSync">
-      <HintPath>C:/Users/Albert/OneDrive/文件/Unity Project/Badminton/Assets/Scripts/LabFrameRelease/LabData/DataSync/Assemblies/DataSync.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/資工1B林奕辰/Badminton/Assets/Scripts/LabFrameRelease/LabData/DataSync/Assemblies/DataSync.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>C:/Users/Albert/OneDrive/文件/Unity Project/Badminton/Assets/Scripts/LabFrameRelease/LabData/DataSync/Assemblies/Newtonsoft.Json.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/資工1B林奕辰/Badminton/Assets/Scripts/LabFrameRelease/LabData/DataSync/Assemblies/Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NLog">
-      <HintPath>C:/Users/Albert/OneDrive/文件/Unity Project/Badminton/Assets/Scripts/LabFrameRelease/LabData/DataSync/Assemblies/NLog.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/資工1B林奕辰/Badminton/Assets/Scripts/LabFrameRelease/LabData/DataSync/Assemblies/NLog.dll</HintPath>
     </Reference>
     <Reference Include="Autofac">
-      <HintPath>C:/Users/Albert/OneDrive/文件/Unity Project/Badminton/Assets/Scripts/LabFrameRelease/Third Party/Autofac.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/資工1B林奕辰/Badminton/Assets/Scripts/LabFrameRelease/Third Party/Autofac.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json.Schema">
-      <HintPath>C:/Users/Albert/OneDrive/文件/Unity Project/Badminton/Assets/Scripts/LabFrameRelease/Third Party/Newtonsoft.Json.Schema.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/資工1B林奕辰/Badminton/Assets/Scripts/LabFrameRelease/Third Party/Newtonsoft.Json.Schema.dll</HintPath>
     </Reference>
     <Reference Include="InTheHand.Devices.Bluetooth">
-      <HintPath>C:/Users/Albert/OneDrive/文件/Unity Project/Badminton/Assets/Scripts/LabFrameRelease/Third Party/32feet/InTheHand.Devices.Bluetooth.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/資工1B林奕辰/Badminton/Assets/Scripts/LabFrameRelease/Third Party/32feet/InTheHand.Devices.Bluetooth.dll</HintPath>
     </Reference>
     <Reference Include="Valve.Newtonsoft.Json">
-      <HintPath>C:/Users/Albert/OneDrive/文件/Unity Project/Badminton/Assets/SteamVR/Input/Plugins/JSON.NET/Valve.Newtonsoft.Json.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/資工1B林奕辰/Badminton/Assets/SteamVR/Input/Plugins/JSON.NET/Valve.Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.10f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>

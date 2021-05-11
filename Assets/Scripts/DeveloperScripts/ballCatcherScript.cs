@@ -12,19 +12,19 @@ public class ballCatcherScript : MonoBehaviour
         m_racket_transform = GameEntityManager.Instance.GetCurrentSceneRes<SceneEntity>().racket_transform;
         m_racket = GameEntityManager.Instance.GetCurrentSceneRes<SceneEntity>().racket_pose;
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.attachedRigidbody?.gameObject == GameEntityManager.Instance.GetCurrentSceneRes<SceneEntity>().ball)
         {
-            //if (GameDataManager.Instance.enableToHitBall != GameDataManager.team.red) return;
             GameDataManager.Instance.enableToHitBall = GameDataManager.team.none;
             Rigidbody ball = other.attachedRigidbody;
             Vector3 stickDir = transform.position - m_racket_transform.position;
             Vector3 racketFoword = -transform.up;
             Vector3 swingDir = Vector3.Cross(m_racket.GetAngularVelocity(), stickDir).normalized;
             float HitBallSpeed = Vector3.Dot(stickDir.magnitude * m_racket.GetAngularVelocity().magnitude*swingDir + m_racket.GetVelocity(),racketFoword);
-            float ballReflectSpeedDelta = (HitBallSpeed-Vector3.Dot(racketFoword,ball.velocity))*(1.4f);
-            ball.velocity = ball.velocity + racketFoword * ballReflectSpeedDelta;
+            float ballReflectSpeedDelta = (HitBallSpeed-Vector3.Dot(racketFoword,ball.velocity))*(1.6f);
+            Vector3 testV = ball.velocity + racketFoword * ballReflectSpeedDelta;
+            if (Vector3.Dot(testV, ball.velocity) < 0 || testV.magnitude > ball.velocity.magnitude) ball.velocity = testV;
         }
     }
 }

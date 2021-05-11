@@ -727,6 +727,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Describe: 
   scored: 0
+  scoredTeam: 0
 --- !u!1 &4557358050853601071
 GameObject:
   m_ObjectHideFlags: 0
