@@ -4,16 +4,22 @@ using UnityEngine;
 
 public class normalLineScript : MonoBehaviour
 {
-    public GameObject right { get; private set; }
-    public GameObject left { get; private set; }
-    public GameObject back { get; private set; }
+    public lineDetecter right { get; private set; }
+    public lineDetecter left { get; private set; }
+    public lineDetecter back { get; private set; }
     private void Awake()
     {
-        right = transform.Find("right")?.gameObject;
+        right = transform.Find("right")?.GetComponent<lineDetecter>();
         if (right == null) Debug.LogError("servingLineScript can't find right");
-        left = transform.Find("left")?.gameObject;
+        left = transform.Find("left")?.GetComponent<lineDetecter>();
         if (left == null) Debug.LogError("servingLineScript can't find left");
-        back = transform.Find("back")?.gameObject;
+        back = transform.Find("back")?.GetComponent<lineDetecter>();
         if (back == null) Debug.LogError("servingLineScript can't find back");
+    }
+    public void setUntouch()
+    {
+        right.Touch = false;
+        left.Touch = false;
+        back.Touch = false;
     }
 }

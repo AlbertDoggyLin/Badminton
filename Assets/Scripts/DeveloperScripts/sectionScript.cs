@@ -13,4 +13,9 @@ public class sectionScript : MonoBehaviour
         normalLine = transform.Find("normalLine").GetComponent<normalLineScript>();
         if (normalLine == null) Debug.LogError("Section can't find normal line");
     }
+    public void setUntouch()
+    {
+        servingLine.setUntouch();
+        normalLine.setUntouch();
+    }
 }

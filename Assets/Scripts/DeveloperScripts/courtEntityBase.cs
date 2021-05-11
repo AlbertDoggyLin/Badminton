@@ -14,6 +14,11 @@ public class courtEntityBase : GameEntityBase
         section2 = transform.Find("section2")?.GetComponent<sectionScript>();
         if (section2 == null) Debug.LogError("courtEntityBase can't find section2");
     }
+    public void setUntouch()
+    {
+        section1.setUntouch();
+        section2.setUntouch();
+    }
     public override void EntityDispose()
     {
 
