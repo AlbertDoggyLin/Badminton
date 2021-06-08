@@ -7,27 +7,32 @@ public class GameTaskManager : MonoSingleton<GameTaskManager>, IGameManager
 {
     int IGameManager.Weight => GobalData.GameTaskManagerWeight;
 
-    private List<TaskBase> _queuetasks;
+    private List<TaskBase> _mainqueuetasks;
+    private List<TaskBase> _servingqueuetasks;
 
     void IGameManager.ManagerInit()
     {
-        _queuetasks = TaskFanctory.GetCurrentScopeTasks();
+        _mainqueuetasks = TaskFanctory.GetCurrentScopeTasks();
+        _servingqueuetasks = TaskFanctory.GetServingModeTasks();
     }
 
     IEnumerator IGameManager.ManagerDispose()
     {
-        _queuetasks.Clear();
+        _mainqueuetasks.Clear();
+        _servingqueuetasks.Clear();
         yield return null;
     }
 
 
-    public void StartGameTask()
+    public void StartMainGameTask()
     {
-        _queuetasks.ForEach(p => { StartCoroutine(StartGameTaskEnumerator(p)); });
-
+        _mainqueuetasks.ForEach(p => { StartCoroutine(StartGameTaskEnumerator(p)); });
     }
 
-
+    public void StartServingGameTask()
+    {
+        _servingqueuetasks.ForEach(p => { StartCoroutine(StartGameTaskEnumerator(p)); });
+    }
 
     private IEnumerator StartGameTaskEnumerator(TaskBase taskBase)
     {

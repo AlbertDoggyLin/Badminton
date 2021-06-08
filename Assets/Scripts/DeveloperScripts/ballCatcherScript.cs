@@ -16,7 +16,7 @@ public class ballCatcherScript : MonoBehaviour
     {
         if (other.attachedRigidbody?.gameObject == GameEntityManager.Instance.GetCurrentSceneRes<SceneEntity>().ball)
         {
-            GameDataManager.Instance.enableToHitBall = GameDataManager.team.none;
+            Invoke("setBallEnable", 0.2f);
             Rigidbody ball = other.attachedRigidbody;
             Vector3 stickDir = transform.position - m_racket_transform.position;
             Vector3 racketFoword = -transform.up;
@@ -26,5 +26,9 @@ public class ballCatcherScript : MonoBehaviour
             Vector3 testV = ball.velocity + racketFoword * ballReflectSpeedDelta;
             if (Vector3.Dot(testV, ball.velocity) < 0 || testV.magnitude > ball.velocity.magnitude) ball.velocity = testV;
         }
+    }
+    private void setBallEnable()
+    {
+        GameEntityManager.Instance.GetCurrentSceneRes<SceneEntity>().ball.GetComponent<ballScript>().enableToHitBall = team.None;
     }
 }

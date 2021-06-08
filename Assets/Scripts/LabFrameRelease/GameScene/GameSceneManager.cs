@@ -64,12 +64,19 @@ public class GameSceneManager : MonoSingleton<GameSceneManager>, IGameManager
         {
             
             GameEntityManager.Instance.SetSceneEntity,
-            GameTaskManager.Instance.StartGameTask,
+            GameTaskManager.Instance.StartMainGameTask,
             
             //TODO 转场出场景需要做的事情
         }, GobalData.MainScene);
     }
-
+    public void Change2ServingScene()
+    {
+        ChangeScene(new List<Action>
+        {
+            GameEntityManager.Instance.SetSceneEntity,
+            GameTaskManager.Instance.StartServingGameTask
+        }, GobalData.ServingScene);
+    }
     void IGameManager.ManagerInit()
     {
         

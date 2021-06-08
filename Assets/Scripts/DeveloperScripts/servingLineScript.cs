@@ -9,12 +9,12 @@ public class servingLineScript : MonoBehaviour
     public lineDetecter back { get; private set; }
     private void Awake()
     {
-        /*straight = transform.Find("StraightServingLine").GetChild(0)?.GetComponent<lineDetecter>();
+        straight = transform.Find("StraightServingLine").GetChild(0)?.GetComponent<lineDetecter>();
         if (straight == null) Debug.LogError("servingLineScript can't find StraightServingLine");
         front = transform.Find("FrontServingLine").GetChild(0)?.GetComponent<lineDetecter>();
         if (front == null) Debug.LogError("servingLineScript can't find FrontServingLine");
         back = transform.Find("BackServingLine").GetChild(0)?.GetComponent<lineDetecter>();
-        if (front == null) Debug.LogError("servingLineScript can't find BackServingLine");*/
+        if (front == null) Debug.LogError("servingLineScript can't find BackServingLine");
     }
     public void setUntouch()
     {

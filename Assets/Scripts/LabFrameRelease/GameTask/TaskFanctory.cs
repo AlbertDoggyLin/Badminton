@@ -9,7 +9,16 @@ public class TaskFanctory
     {
         var temptasks = new List<TaskBase>
         {
-            new mainGameTask()
+            new mainGameTask(),
+            new gameEndTask()
+        };
+        return temptasks;
+    }
+    public static List<TaskBase> GetServingModeTasks()
+    {
+        var temptasks = new List<TaskBase>
+        {
+
         };
         return temptasks;
     }

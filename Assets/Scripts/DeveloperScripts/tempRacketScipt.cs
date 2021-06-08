@@ -14,7 +14,7 @@ public class tempRacketScipt : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            transform.position -= tempSpeed *2f* Time.deltaTime;
+            transform.position -= tempSpeed * 2f * Time.deltaTime;
         }
         else
         {

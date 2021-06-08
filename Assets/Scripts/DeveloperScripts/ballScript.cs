@@ -4,20 +4,21 @@ using UnityEngine;
 
 public class ballScript : GameEntityBase
 {
-    private Rigidbody Rigidbody;
-    private bool falling;
-    private float timer;
-    private float tempSpeed;
+    public GameStatus currentStatus;
+    public ServingPosition currentPosition;
+    public team scoredTeam;
+    public team enableToHitBall;
     public bool scored;
-    public GameDataManager.team scoredTeam;
+    private Rigidbody Rigidbody;
+    private Vector3 LastPosition;
     private new void Awake()
     {
         base.Awake();
+        currentPosition = ServingPosition.Right;
+        currentStatus = GameStatus.Stop;
         scored = false;
         Rigidbody = GetComponent<Rigidbody>();
         if (Rigidbody == null) Debug.LogError("ball can't find rigidbody");
-        falling = false;
-        tempSpeed = -1;
     }
     public override void EntityDispose()
     {
@@ -26,48 +27,29 @@ public class ballScript : GameEntityBase
     {
         if (!scored)
         {
-            if (falling && Rigidbody.velocity.magnitude > 4.6f)
-                Rigidbody.velocity = Rigidbody.velocity.normalized * 4.6f;
-            else if (Rigidbody.velocity.magnitude > 4.6f)
+            Vector3 v = Rigidbody.velocity;
+            Rigidbody.velocity -= 0.69f * v.magnitude * v * Time.deltaTime;
+            if (LastPosition.z * transform.position.z <= 0)
             {
-                if (tempSpeed == -1 || Rigidbody.velocity.magnitude > tempSpeed)
-                {
-                    tempSpeed = Rigidbody.velocity.magnitude;
-                    Debug.Log(tempSpeed);
-                }
-                timer += Time.deltaTime;
-                Rigidbody.velocity = Rigidbody.velocity.normalized / (0.22f * timer + 1) * tempSpeed;
-                Debug.Log(Rigidbody.velocity.magnitude);
-                if (Rigidbody.velocity.magnitude < 4.6f)
-                {
-                    tempSpeed = -1;
-                    falling = true;
-                }
+                if (transform.position.z > 0 || LastPosition.z < 0) enableToHitBall = team.Blue;
+                else if (transform.position.z < 0 || LastPosition.z > 0) enableToHitBall = team.Red;
             }
             if (Rigidbody.velocity.magnitude>0.1f)transform.rotation = Quaternion.LookRotation(Rigidbody.velocity.normalized);
-        }
-        else
-        {
-            tempSpeed = -1;
-            falling = false;
         }
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.name != "floor" &&
-            collision.collider.name != "wall" &&
-            collision.collider.name != "net" &&
-            collision.collider.name != "player"
-            )
+        scored = true;
+        if (enableToHitBall == team.Red)
         {
-            falling = false;
-            timer = 0f;
+            RedSectionScript court = GameEntityManager.Instance.GetCurrentSceneRes<SceneEntity>().singleCourt.GetComponent<courtEntityBase>().section1;
+            if (court.isOut) scoredTeam = team.Red;
+            else scoredTeam = team.Blue;
         }
-        else
-        {
-            scored = true;
-            if (transform.position.z > 0) scoredTeam = GameDataManager.team.red;
-            else scoredTeam = GameDataManager.team.blue;
+        else { 
+            BlueSectionScript court = GameEntityManager.Instance.GetCurrentSceneRes<SceneEntity>().singleCourt.GetComponent<courtEntityBase>().section2;
+            if (court.isOut) scoredTeam = team.Blue;
+            else scoredTeam = team.Red;
         }
     }
 }

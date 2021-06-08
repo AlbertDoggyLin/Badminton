@@ -14,10 +14,6 @@ public class GameDataManager : MonoSingleton<GameDataManager>, IGameManager
     /// <summary>
     /// LabData
     /// </summary>
-    public enum team
-    {
-        red,blue,none
-    };
     public class score
     {
         public score() { red = 0;blue = 0; }
@@ -25,7 +21,6 @@ public class GameDataManager : MonoSingleton<GameDataManager>, IGameManager
         public int blue { get; set; }
     }
     public score Score;
-    public team enableToHitBall=team.none;
     public static ILabDataManager LabDataManager { get; set; }
 
     /// <summary>
