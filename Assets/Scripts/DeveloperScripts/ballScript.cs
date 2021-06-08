@@ -11,6 +11,7 @@ public class ballScript : GameEntityBase
     public bool scored;
     private Rigidbody Rigidbody;
     private Vector3 LastPosition;
+    public const float c = 0.2f;
     private new void Awake()
     {
         base.Awake();
@@ -23,19 +24,16 @@ public class ballScript : GameEntityBase
     public override void EntityDispose()
     {
     }
-    void Update()
+    void FixedUpdate()
     {
-        if (!scored)
+        Vector3 v = Rigidbody.velocity;
+        Rigidbody.velocity -= c * v.magnitude * v * Time.deltaTime;
+        if (LastPosition.z * transform.position.z <= 0)
         {
-            Vector3 v = Rigidbody.velocity;
-            Rigidbody.velocity -= 0.69f * v.magnitude * v * Time.deltaTime;
-            if (LastPosition.z * transform.position.z <= 0)
-            {
-                if (transform.position.z > 0 || LastPosition.z < 0) enableToHitBall = team.Blue;
-                else if (transform.position.z < 0 || LastPosition.z > 0) enableToHitBall = team.Red;
-            }
-            if (Rigidbody.velocity.magnitude>0.1f)transform.rotation = Quaternion.LookRotation(Rigidbody.velocity.normalized);
+            if (transform.position.z > 0 || LastPosition.z < 0) enableToHitBall = team.Blue;
+            else if (transform.position.z < 0 || LastPosition.z > 0) enableToHitBall = team.Red;
         }
+        if (Rigidbody.velocity.magnitude>0.1f)transform.rotation = Quaternion.LookRotation(Rigidbody.velocity.normalized);
     }
     private void OnCollisionEnter(Collision collision)
     {
