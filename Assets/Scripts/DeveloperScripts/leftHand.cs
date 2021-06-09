@@ -18,7 +18,7 @@ public class leftHand : GameEntityBase
     {
         if (holdingBall)
         {
-            ball.transform.position = transform.position;
+            ball.transform.position = transform.position+new Vector3(0,0,0);
             ball.GetComponent<Rigidbody>().velocity = Vector3.zero;
             ball.transform.rotation = transform.rotation;
         }
