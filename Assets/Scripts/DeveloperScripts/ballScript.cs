@@ -33,7 +33,7 @@ public class ballScript : GameEntityBase
             if (transform.position.z > 0 || LastPosition.z < 0) enableToHitBall = team.Blue;
             else if (transform.position.z < 0 || LastPosition.z > 0) enableToHitBall = team.Red;
         }
-        if (Rigidbody.velocity.magnitude>0.1f)transform.rotation = Quaternion.LookRotation(Rigidbody.velocity.normalized);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(Rigidbody.velocity.normalized), Rigidbody.velocity.magnitude * 3);
     }
     private void OnCollisionEnter(Collision collision)
     {

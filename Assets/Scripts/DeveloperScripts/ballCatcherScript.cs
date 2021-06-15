@@ -19,8 +19,9 @@ public class ballCatcherScript : MonoBehaviour
         Vector3 stickDir = m_racket.transform.position - m_racket_transform.position;
         Vector3 swingDir = Vector3.Cross(m_racket.GetAngularVelocity(), stickDir).normalized;
         Vector3 currentV = stickDir.magnitude * m_racket.GetAngularVelocity().magnitude * swingDir + m_racket.GetVelocity();
-        transform.localScale = 1.1f * new Vector3(1, 3, 1) + 
-            3 * (Mathf.Abs(currentV.x)*transform.right + Mathf.Abs(currentV.y) * 3 * transform.up + Mathf.Abs(currentV.z)*transform.forward);
+        Vector3 localV = Quaternion.Inverse(transform.rotation) * currentV;
+        int c = 2;
+        transform.localScale = new Vector3(1.1f, 3.3f + 6 * c*Mathf.Abs(localV.y), 1.1f);
     }
     private void OnTriggerStay(Collider other)
     {
@@ -39,6 +40,7 @@ public class ballCatcherScript : MonoBehaviour
             {
                 print(testV.magnitude);
                 ball.velocity = testV;
+                GameInputController.Instance.RightHandShake(testV.magnitude);
             }
         }
     }

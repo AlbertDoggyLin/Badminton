@@ -19,4 +19,8 @@ public class GameInputController : MonoSingleton<GameInputController>
         leftHandTouch = leftHandGrib.GetState(SteamVR_Input_Sources.LeftHand);
         rightHandTouch = rightHandGrib.GetState(SteamVR_Input_Sources.RightHand);
     }
+    public void RightHandShake(float v)
+    {
+        SteamVR_Actions.default_Haptic.Execute(0, 0.1f, 1, 0.05f*v, SteamVR_Input_Sources.RightHand);
+    }
 }

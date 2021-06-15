@@ -627,7 +627,6 @@
     <Compile Include="Assets\Scripts\DeveloperScripts\servingLineScript.cs" />
     <Compile Include="Assets\Scripts\DeveloperScripts\ServingPosition.cs" />
     <Compile Include="Assets\Scripts\DeveloperScripts\team.cs" />
-    <Compile Include="Assets\Scripts\DeveloperScripts\tempRacketScipt.cs" />
     <Compile Include="Assets\Scripts\LabFrameRelease\Config\ApplicationConfig.cs" />
     <Compile Include="Assets\Scripts\LabFrameRelease\Enum\Enum.cs" />
     <Compile Include="Assets\Scripts\LabFrameRelease\GameApplication\GameApplication.cs" />

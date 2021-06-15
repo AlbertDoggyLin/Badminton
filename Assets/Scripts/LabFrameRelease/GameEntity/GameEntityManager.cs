@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEngine;
 using GameData;
 
+
 public class GameEntityManager : MonoSingleton<GameEntityManager>, IGameManager
 {
     int IGameManager.Weight => GobalData.GameEntityManagerWeight;
