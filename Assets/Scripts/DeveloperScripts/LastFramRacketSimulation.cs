@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Valve.VR;
 
-public class LastFrameRacketSimulation : MonoBehaviour
+public class LastFramRacketSimulation : MonoBehaviour
 {
     private ballCatcherScript ballCatcherScript;
     private void Awake()
     {
-        ballCatcherScript = transform.parent.GetChild(0).GetComponent<ballCatcherScript>();
+        ballCatcherScript = transform.parent.parent.GetChild(0).GetComponent<ballCatcherScript>();
     }
     private void OnTriggerStay(Collider other)
     {

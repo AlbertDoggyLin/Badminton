@@ -11,7 +11,7 @@ public class ballScript : GameEntityBase
     public bool scored;
     private Rigidbody Rigidbody;
     private Vector3 LastPosition;
-    public const float c = 0.2f;
+    public const float c = 0.3f;
     private new void Awake()
     {
         base.Awake();
