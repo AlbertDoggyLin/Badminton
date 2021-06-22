@@ -19,9 +19,10 @@ public class ballCatcherScript : MonoBehaviour
     public bool hited;
     public Vector3 ballHitedPosition;
     public Vector3 ballHitedSpeed;
+    private float timeStamp = 0;
     private void Start()
     {
-        Wrapper = transform.parent.GetChild(1);
+        Wrapper = GameEntityManager.Instance.GetCurrentSceneRes<SceneEntity>().lastFrameSimulator;
         lastFrameRacketSimulate = Wrapper.GetChild(0);
         m_racket_transform = GameEntityManager.Instance.GetCurrentSceneRes<SceneEntity>().racket_transform;
         m_racket = GameEntityManager.Instance.GetCurrentSceneRes<SceneEntity>().racket_pose;
@@ -37,16 +38,16 @@ public class ballCatcherScript : MonoBehaviour
         Vector3 swingDir = Vector3.Cross(m_racket.GetAngularVelocity(), m_racket.transform.position - m_racket_transform.position).normalized;
         Vector3 currentV = (m_racket.transform.position - m_racket_transform.position).magnitude * m_racket.GetAngularVelocity().magnitude * swingDir + m_racket.GetVelocity();
         Vector3 localV = Quaternion.Inverse(transform.rotation) * currentV;
-        int c = 12;
+        int c = 8;
         transform.localScale = new Vector3(1.1f, 3.3f +c *Mathf.Abs(localV.y), 1.1f);
-        //lastFrameRacketSimulate.localScale = transform.localScale;
+        lastFrameRacketSimulate.localScale = new Vector3(1f, 3f + c * Mathf.Abs((Quaternion.Inverse(Wrapper.rotation) * currentV).y), 1f);
         //if Hit Deal with hitting ball
         if (hited)
         {
             hited = false;
             if (leftHand.holdingBall == true) leftHand.holdingBall = false;
             float min = 10;float index = -10;
-            for(float i = -0.5f; i <= 1.5; i += 0.1f)
+            for(float i = 0f; i <= 1f; i += 0.05f)
             {
                 Vector3 testUp = Quaternion.Lerp(lastRotation, transform.rotation, i) * new Vector3(0,-1,0);
                 float k = Vector3.Dot(testUp, Vector3.Lerp(lastBasePosition, m_racket_transform.position, i));
@@ -58,8 +59,7 @@ public class ballCatcherScript : MonoBehaviour
                     index = i;
                 }
             }
-            if (index == -10) Debug.LogError("Count Ball fault");
-            else
+            if (index != -10)
             {
                 print(index);
                 Vector3 stickDir = ballHitedPosition - Vector3.Lerp(lastBasePosition, m_racket_transform.position, index);
@@ -76,12 +76,23 @@ public class ballCatcherScript : MonoBehaviour
                 if (Vector3.Dot(testV, ballHitedSpeed) < 0 || testV.magnitude > ballHitedSpeed.magnitude)
                 {
                     GameEntityManager.Instance.GetCurrentSceneRes<SceneEntity>().ball.GetComponent<Rigidbody>().velocity = testV;
+                    GameEntityManager.Instance.GetCurrentSceneRes<SceneEntity>().ball.GetComponent<ballScript>().lastTeamHitBall = team.Red;
                     GameInputController.Instance.RightHandShake(testV.magnitude);
+                    if (Time.time - timeStamp > 0.2f)
+                    {
+                        timeStamp = Time.time;
+                        if (GameEntityManager.Instance.GetCurrentSceneRes<SceneEntity>().ball.GetComponent<ballScript>().enableToHitBall != team.Red)
+                        {
+                            GameEntityManager.Instance.GetCurrentSceneRes<SceneEntity>().ball.GetComponent<ballScript>().scored = true;
+                            GameEntityManager.Instance.GetCurrentSceneRes<SceneEntity>().ball.GetComponent<ballScript>().scoredTeam = team.Blue;
+                        }
+                        GameEntityManager.Instance.GetCurrentSceneRes<SceneEntity>().ball.GetComponent<ballScript>().enableToHitBall = team.None;
+                    }
                 }
             }
         }
         //Record imformation for last Frame
-        lastRotation = transform.rotation;
+        lastRotation = m_racket_transform.rotation;
         lastHeadPosition = transform.position;
         lastAngularVelocity = m_racket.GetAngularVelocity();
         lastVelocity = m_racket.GetVelocity();
@@ -92,15 +103,9 @@ public class ballCatcherScript : MonoBehaviour
     {
         if (other.attachedRigidbody?.gameObject == GameEntityManager.Instance.GetCurrentSceneRes<SceneEntity>().ball)
         {
-            Invoke("setBallEnable", 0.5f);
             hited = true;
             ballHitedPosition = other.transform.position;
             ballHitedSpeed = other.attachedRigidbody.velocity;
         }
-    }
-    private void setBallEnable()
-    {
-        GameEntityManager.Instance.GetCurrentSceneRes<SceneEntity>().ball.GetComponent<ballScript>().enableToHitBall = team.None;
-        hited = false;
     }
 }

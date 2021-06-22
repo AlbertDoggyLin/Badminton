@@ -7,14 +7,15 @@ public class playerScript : MonoBehaviour
 {
     private NavMeshAgent agent;
     public GameObject ball;
+    private ballScript ballScript;
     private bool chasingBall;
     private Rigidbody ballRigid;
     private void Start()
     {
-        //if (ball == null) 
         ball = GameEntityManager.Instance.GetCurrentSceneRes<SceneEntity>().ball;
         ballRigid = ball.GetComponent<Rigidbody>();
-        chasingBall = true;
+        ballScript = ball.GetComponent<ballScript>();
+        chasingBall = false;
         agent = GetComponent<NavMeshAgent>();
     }
     private void Update()

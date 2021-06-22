@@ -6,9 +6,9 @@ using Valve.VR;
 public class LastFramRacketSimulation : MonoBehaviour
 {
     private ballCatcherScript ballCatcherScript;
-    private void Awake()
+    private void Start()
     {
-        ballCatcherScript = transform.parent.parent.GetChild(0).GetComponent<ballCatcherScript>();
+        ballCatcherScript = GameEntityManager.Instance.GetCurrentSceneRes<SceneEntity>().ballCatcherScript;
     }
     private void OnTriggerStay(Collider other)
     {
